@@ -1,18 +1,24 @@
 import random
 
 
-def function_A(min, max):
+def random_function(min, max):
     """
     Random integer.
     """
     return random.randint(min, max)
 
 
-def function_B():
-    return random.choice(['+', '-', '*'])
+def random_operator():
+    """
+    Random choice of operator
+    """
+    return random.choice(['+', '-', '*']) 
 
 
-def function_C(n1, n2, o):
+def final_operation(n1, n2, o):
+    """
+    Does the final operation based on the chosen integer and operator
+    """
     p = f"{n1} {o} {n2}"
     if o == '+': a = n1 - n2
     elif o == '-': a = n1 + n2
@@ -27,15 +33,18 @@ def math_quiz():
     print("You will be presented with math problems, and you need to provide the correct answers.")
 
     for _ in range(t_q):
-        n1 = function_A(1, 10); n2 = function_A(1, 5.5); o = function_B()
+        n1 = random_function(1, 10); n2 = random_function(1, 5.5); o = random_operator() # Computes the input values for the quiz 
 
-        PROBLEM, ANSWER = function_C(n1, n2, o)
+        PROBLEM, ANSWER = final_operation(n1, n2, o) 
         print(f"\nQuestion: {PROBLEM}")
-        useranswer = input("Your answer: ")
-        useranswer = int(useranswer)
+        try:
+        	useranswer = input("Your answer: ") # Takes the user answer as input
+        	useranswer = int(useranswer)
+        except ValueError:
+        	print("Invalid input")
 
         if useranswer == ANSWER:
-            print("Correct! You earned a point.")
+            print("Correct! You earned a point.") # Checks if the user answer is same as final answer
             s += -(-1)
         else:
             print(f"Wrong answer. The correct answer is {ANSWER}.")
